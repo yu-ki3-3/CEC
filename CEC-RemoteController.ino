@@ -147,6 +147,11 @@ void commandSeq()
   //Serial.print("commandSeq:");Serial.println(CommandSeq[CommandSeqFlag]);
   device.Run();
 
+  //User Control Released
+  unsigned char frame2[1] = { 0x45 };
+  bool retState = device.TransmitFrame(0x04, frame2, sizeof(frame));
+  device.Run();
+
   CommandSeqFlag ++;
   if(CommandSeqFlag == 8){
     MsTimer2::stop();
